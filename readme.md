@@ -3,8 +3,8 @@
     $ sudo apt install libevent-dev
     $ sudo pecl install libevent-beta
 
-## php > 6
-    $ sudo apt install php-dev libevent-dev re2c
+## php > 6, libevent < 2
+    $ sudo apt install php-dev libevent1-dev re2c
     $ git clone https://github.com/expressif/pecl-event-libevent
     $ cd pecl-event-libevent
     $ sudo phpize
