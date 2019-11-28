@@ -1,4 +1,4 @@
-# Install libevent
+# Install libevent extension
 ## php < 6
     $ sudo apt install libevent-dev
     $ sudo pecl install libevent-beta
