@@ -1,3 +1,20 @@
+# Install libevent
+## php < 6
+    $ sudo apt install libevent-dev
+    $ sudo pecl install libevent-beta
+
+## php > 6
+    $ sudo apt install php-dev libevent-dev re2c
+    $ git clone https://github.com/expressif/pecl-event-libevent
+    $ cd pecl-event-libevent
+    $ sudo phpize
+    $ sudo ./configure
+    $ make
+    $ sudo make install
+    $ echo "extension=libevent.so" > libevent.ini
+    $ sudo mv libevent.ini /etc/php/7.2/mods-available/
+    sudo ln -s /etc/php/7.2/mods-available/libevent.ini /etc/php/7.2/cli/conf.d/20-libevent.ini
+
 # Run
     $ git clone https://github.com/anton-veretenenko/ridlab-server-php
     $ cd ridlab-server-php
