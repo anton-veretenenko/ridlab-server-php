@@ -54,7 +54,7 @@ class SServer
         event_buffer_watermark_set($buf_handler, EV_READ, 0, 0xffffff);
         event_buffer_priority_set($buf_handler, 10);
         event_buffer_enable($buf_handler, EV_READ | EV_PERSIST);
-        //$this->handlers[$this->id] = SEHandler($buf_handler);
+        $this->handlers[$this->id] = new SEHandler($buf_handler);
         $this->buf_handlers[$this->id] = $buf_handler;
         $this->clients[$this->id] = $client_socket;
 
@@ -65,22 +65,23 @@ class SServer
     {
         event_buffer_disable($this->buf_handlers[$id], EV_READ | EV_WRITE);
         event_buffer_free($this->buf_handlers[$id]);
-        //$this->handlers[$id]->close();
+        $this->handlers[$id]->close();
         fclose($this->clients[$id]);
         unset($this->buf_handlers[$id]);
-        //unset($this->handlers[$id]);
+        unset($this->handlers[$id]);
         unset($this->clients[$id]);
-        //fclose($this->socket);
     }
 
     function event_read($buf_handler, $id)
     {
-        //$this->handlers[$id]->read();
+        $this->handlers[$id]->read();
     }
 
     function event_write($buf_handler, $id)
     {
-        //$this->handlers[$id]->write();
+        if (!$this->handlers[$id]->write()) {
+            $this->event_error($buf_handler, '', $id);
+        }
     }
 }
 
