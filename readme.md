@@ -13,7 +13,7 @@
     $ sudo make install
     $ echo "extension=libevent.so" > libevent.ini
     $ sudo mv libevent.ini /etc/php/7.2/mods-available/
-    sudo ln -s /etc/php/7.2/mods-available/libevent.ini /etc/php/7.2/cli/conf.d/20-libevent.ini
+    $ sudo ln -s /etc/php/7.2/mods-available/libevent.ini /etc/php/7.2/cli/conf.d/20-libevent.ini
 
 # Run
     $ git clone https://github.com/anton-veretenenko/ridlab-server-php
